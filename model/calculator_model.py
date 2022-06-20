@@ -77,7 +77,7 @@ class CalculatorModel:
         w1 = tf.placeholder(tf.float32, name='w1')
         w2 = tf.placeholder(tf.float32, name='w2')
         feed_dict = {'w1': 8.0, 'w2': 2.0}
-        r = tf.divide(w1, w2, name='op_div')
+        r = tf.divide(w1, w2, name='op_div')  # r : 모델,모델은 텐서플로가 정의 및 훈련시킨다. (정의)
         sess = tf.Session()
         _ = tf.Variable(initial_value = 'fake_variable')
         sess.run(tf.global_variables_initializer())
