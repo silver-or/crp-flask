@@ -1,41 +1,42 @@
+import tensorflow as tf
+import numpy as np
+
+
 class Solution:
     def __init__(self) -> None:
-        import tensorflow as tf
-        import numpy as np
-
-        char_arr = [c for c in 'SEPabcdefghijklmnopqrstuvwxyz단어나무놀이소녀키스사랑']
-        num_dic = {n: i for i, n in enumerate(char_arr)}
-        dic_len = len(num_dic)
+        self.char_arr = [c for c in 'SEPabcdefghijklmnopqrstuvwxyz단어나무놀이소녀키스사랑']
+        self.num_dic = {n: i for i, n in enumerate(self.char_arr)}
+        self.dic_len = len(self.num_dic)
 
         # 영어를 번역하기 위한 학습데이터
 
-        seq_data = [['word', '단어'],['wood','나무'],
+        self.seq_data = [['word', '단어'],['wood','나무'],
                 ['game', '놀이'],['girl', '소녀'],['kiss', '키스'],['love', '사랑']]
 
-        def make_batch(seq_data):
-            input_batch = []
-            output_batch = []
-            target_batch = []
+    def make_batch(seq_data):
+        input_batch = []
+        output_batch = []
+        target_batch = []
 
-            for seq in seq_data:
-                input = [num_dic[n] for n in seq[0]]
-                # 인코더 셀의 입력값. 입력단어의 글자들을 한글자씩 떼어 배열로 만든다
-                output = [num_dic[n] for n in ('S' + seq[1])]
-                # 디코더 셀의 입력값. 시작을 나타내는 S 심볼을 맨 앞에 붙인다.
-                # S 는 디코더 입력의 시작
-                # E 는 디코더 입력의 끝
-                # P 는 현재 배치 데이터의 time step 크기보다 작은 경우 빈 시퀀스를 채우는 심볼
-                """
-                예) 현재 배치 데이터의 최대크기가 4인 경우
-                word -> ['w', 'o', 'r', 'd']
-                to -> ['t', 'o', 'P', 'P']
-                """
-                target = [num_dic[n] for n in (seq[1] + 'E')]
-                
-                input_batch.append(np.eye(dic_len)[input])
-                output_batch.append(np.eye(dic_len)[output])
-                target_batch.append(target)
-            return input_batch, output_batch, target_batch
+        for seq in seq_data:
+            input = [num_dic[n] for n in seq[0]]
+            # 인코더 셀의 입력값. 입력단어의 글자들을 한글자씩 떼어 배열로 만든다
+            output = [num_dic[n] for n in ('S' + seq[1])]
+            # 디코더 셀의 입력값. 시작을 나타내는 S 심볼을 맨 앞에 붙인다.
+            # S 는 디코더 입력의 시작
+            # E 는 디코더 입력의 끝
+            # P 는 현재 배치 데이터의 time step 크기보다 작은 경우 빈 시퀀스를 채우는 심볼
+            """
+            예) 현재 배치 데이터의 최대크기가 4인 경우
+            word -> ['w', 'o', 'r', 'd']
+            to -> ['t', 'o', 'P', 'P']
+            """
+            target = [num_dic[n] for n in (seq[1] + 'E')]
+            
+            input_batch.append(np.eye(dic_len)[input])
+            output_batch.append(np.eye(dic_len)[output])
+            target_batch.append(target)
+        return input_batch, output_batch, target_batch
                 
         # *****
         # 옵션 설정

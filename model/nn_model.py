@@ -9,6 +9,7 @@ from icecream import ic
 import tensorflow.compat.v1 as tf
 import numpy as np
 
+
 class Solution():
     def __init__(self, x_data, y_data) -> None:
         self.x_data = x_data

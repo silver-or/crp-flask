@@ -1,5 +1,4 @@
 import numpy as np
- 
 
 
 class Perceptron(object):
@@ -25,7 +24,8 @@ class Perceptron(object):
         self.random_state = random_state
 
     def fit(self, X, y):
-        """훈련 데이터 학습
+        """
+        훈련 데이터 학습
         매개변수
         ----------
         X : {array-like}, shape = [n_samples, n_features]

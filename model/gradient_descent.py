@@ -1,9 +1,9 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
+
 class GradientDescent():
     def execute(self):
-
         X = [1., 2., 3,]
         Y = [1., 2., 3,]
         m = n_samples = len(X)

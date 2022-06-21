@@ -1,9 +1,10 @@
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 class Solution:
     def __init__(self) -> None:
-        import tensorflow as tf
-        import numpy as np
-        import matplotlib.pyplot as plt
-
         num_points = 1000
         vectors_set = []
 

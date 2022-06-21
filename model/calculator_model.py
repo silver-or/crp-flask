@@ -8,6 +8,7 @@ from sympy import im
 from icecream import ic
 import tensorflow.compat.v1 as tf
 
+
 class CalculatorModel:
     def __init__(self) -> None:
         self.model = os.path.join(basedir, 'model')
